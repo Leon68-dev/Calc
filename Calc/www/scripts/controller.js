@@ -64,7 +64,8 @@ function CalcKey(key) {
     }
     else if (key == '+' || key == '-' || key == '*' || key == '/' || key == '='
         || key == '%' || key == 0x0D || key == 'q' || key == 'x'
-        || key == 'sin' || key == 'cos' || key == 'tan') {
+        || key == 'sin' || key == 'cos' || key == 'tan'
+        || key == 'dec2bin' || key == 'dec2hex' || key == 'hex2bin' || key == 'hex2dec' || key == 'bin2hex' || key == 'bin2dec' ) {
         var r = 0;
 
         if (clcStatus == CS_VALID) {
@@ -107,37 +108,78 @@ function CalcKey(key) {
 
         if (Operator == 'q') {
             r = GetDisplay();
-
             if (r > 0)
                 SetDisplay(Math.sqrt(r));
             else
                 Error();
             Operator = '=';
-        }
-
-        if (Operator == 'x') {
+        } else if (Operator == 'x') {
             SetDisplay(1 / r);
             Operator = '=';
-        }
-
-        if (Operator == 'sin') {
+            if (clcStatus == CS_FIRST) {
+                clcStatus = CS_VALID;
+            }
+        } else if (Operator == 'sin') {
             var res = Math.sin(grad2rad(r));
             SetDisplay(res.toFixed(4));
             Operator = '=';
-        }
-
-        if (Operator == 'cos') {
+            if (clcStatus == CS_FIRST) {
+                clcStatus = CS_VALID;
+            }
+        } else if (Operator == 'cos') {
             var res = Math.cos(grad2rad(r));
             SetDisplay(res);
             Operator = '=';
-        }
-
-        if (Operator == 'tan') {
+            if (clcStatus == CS_FIRST) {
+                clcStatus = CS_VALID;
+            }
+        } else if (Operator == 'tan') {
             var res = Math.tan(grad2rad(r));
             SetDisplay(res);
             Operator = '=';
+        } else if (Operator == 'dec2bin') {
+            var res = convertBase.dec2bin(r);
+            SetDisplay(res);
+            Operator = '=';
+            if (clcStatus == CS_FIRST) {
+                clcStatus = CS_VALID;
+            }
+        } else if (Operator == 'dec2hex') {
+            var res = convertBase.dec2hex(r);
+            SetDisplay(res);
+            Operator = '=';
+            if (clcStatus == CS_FIRST) {
+                clcStatus = CS_VALID;
+            }
+        } else if (Operator == 'hex2bin') {
+            var res = convertBase.hex2bin(r);
+            SetDisplay(res);
+            Operator = '=';
+            if (clcStatus == CS_FIRST) {
+                clcStatus = CS_VALID;
+            }
+        } else if (Operator == 'hex2dec') {
+            var res = convertBase.hex2dec(r);
+            SetDisplay(res);
+            Operator = '=';
+            if (clcStatus == CS_FIRST) {
+                clcStatus = CS_VALID;
+            }
+        } else if (Operator == 'bin2hex') {
+            var res = convertBase.bin2hex(r);
+            SetDisplay(res);
+            Operator = '=';
+            if (clcStatus == CS_FIRST) {
+                clcStatus = CS_VALID;
+            }
+        } else if (Operator == 'bin2dec') {
+            var res = convertBase.bin2dec(r);
+            SetDisplay(res);
+            Operator = '=';
+            if (clcStatus == CS_FIRST) {
+                clcStatus = CS_VALID;
+            }
         }
-
         Operand = GetDisplay();
     } else {
         switch (key) {
@@ -164,6 +206,9 @@ function CalcKey(key) {
                 break;
             case 'Pi':
                 NumberDisplay = Math.PI;
+                if (clcStatus == CS_FIRST) {
+                    clcStatus = CS_VALID;
+                }
                 break;
         }
     }
@@ -179,3 +224,24 @@ function grad2rad(grad) {
     res = grad * Math.PI / 180;
     return res;
 }
+
+var convertBase = function () {
+    function convertBase(baseFrom, baseTo) {
+        return function (num) {
+            return parseInt(num, baseFrom).toString(baseTo);
+        };
+    }
+    // binary to decimal
+    convertBase.bin2dec = convertBase(2, 10);
+    // binary to hexadecimal
+    convertBase.bin2hex = convertBase(2, 16);
+    // decimal to binary
+    convertBase.dec2bin = convertBase(10, 2);
+    // decimal to hexadecimal
+    convertBase.dec2hex = convertBase(10, 16);
+    // hexadecimal to binary
+    convertBase.hex2bin = convertBase(16, 2);
+    // hexadecimal to decimal
+    convertBase.hex2dec = convertBase(16, 10);
+    return convertBase;
+}();
