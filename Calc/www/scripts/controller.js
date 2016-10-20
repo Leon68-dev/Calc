@@ -1,8 +1,12 @@
 ﻿function UpdateDisplay() {
     //document.getElementById("txt_result").value = NumberDisplay;
     document.getElementById("txt_result2").value = NumberDisplay;
+}
 
-
+function setFirstStatus() {
+    if (clcStatus == CS_FIRST) {
+        clcStatus = CS_VALID;
+    }
 }
 
 function Clear() {
@@ -116,69 +120,52 @@ function CalcKey(key) {
         } else if (Operator == 'x') {
             SetDisplay(1 / r);
             Operator = '=';
-            if (clcStatus == CS_FIRST) {
-                clcStatus = CS_VALID;
-            }
+            setFirstStatus();
         } else if (Operator == 'sin') {
             var res = Math.sin(grad2rad(r));
             SetDisplay(res.toFixed(4));
             Operator = '=';
-            if (clcStatus == CS_FIRST) {
-                clcStatus = CS_VALID;
-            }
+            setFirstStatus();
         } else if (Operator == 'cos') {
             var res = Math.cos(grad2rad(r));
             SetDisplay(res);
             Operator = '=';
-            if (clcStatus == CS_FIRST) {
-                clcStatus = CS_VALID;
-            }
+            setFirstStatus();
         } else if (Operator == 'tan') {
             var res = Math.tan(grad2rad(r));
             SetDisplay(res);
             Operator = '=';
+            setFirstStatus();
         } else if (Operator == 'dec2bin') {
             var res = convertBase.dec2bin(r);
             SetDisplay(res);
             Operator = '=';
-            if (clcStatus == CS_FIRST) {
-                clcStatus = CS_VALID;
-            }
+            setFirstStatus();
         } else if (Operator == 'dec2hex') {
             var res = convertBase.dec2hex(r);
             SetDisplay(res);
             Operator = '=';
-            if (clcStatus == CS_FIRST) {
-                clcStatus = CS_VALID;
-            }
+            setFirstStatus();
         } else if (Operator == 'hex2bin') {
             var res = convertBase.hex2bin(r);
             SetDisplay(res);
             Operator = '=';
-            if (clcStatus == CS_FIRST) {
-                clcStatus = CS_VALID;
-            }
+            setFirstStatus();
         } else if (Operator == 'hex2dec') {
             var res = convertBase.hex2dec(r);
             SetDisplay(res);
             Operator = '=';
-            if (clcStatus == CS_FIRST) {
-                clcStatus = CS_VALID;
-            }
+            setFirstStatus();
         } else if (Operator == 'bin2hex') {
             var res = convertBase.bin2hex(r);
             SetDisplay(res);
             Operator = '=';
-            if (clcStatus == CS_FIRST) {
-                clcStatus = CS_VALID;
-            }
+            setFirstStatus();
         } else if (Operator == 'bin2dec') {
             var res = convertBase.bin2dec(r);
             SetDisplay(res);
             Operator = '=';
-            if (clcStatus == CS_FIRST) {
-                clcStatus = CS_VALID;
-            }
+            setFirstStatus();
         }
         Operand = GetDisplay();
     } else {
@@ -206,9 +193,7 @@ function CalcKey(key) {
                 break;
             case 'Pi':
                 NumberDisplay = Math.PI;
-                if (clcStatus == CS_FIRST) {
-                    clcStatus = CS_VALID;
-                }
+                setFirstStatus();
                 break;
         }
     }
