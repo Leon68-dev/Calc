@@ -2,12 +2,18 @@
 <html>
 <head>
     <meta charset="utf-8" />
-
     <!--
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">-->
+
     <title>Calc</title>
 
     <!-- Calc references -->
@@ -15,21 +21,20 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
     <style type="text/css">
+
         body {
             background: silver;
         }
-        
+
         [class*="col-"] {
             padding: 2pt;
         }
 
         [class*="row"] {
-            margin-left:5pt;
-            margin-right:5pt;
+            margin-left: 5pt;
+            margin-right: 5pt;
         }
-
     </style>
-
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/jquery-2.1.4.min.js"></script>
@@ -37,26 +42,22 @@
     <script src="scripts/index.js"></script>
     <script src="scripts/model.js"></script>
     <script src="scripts/controller.js"></script>
-
 </head>
 <body>
-    
+
     <form class="form-horizontal">
         <div class="panel-body" id="frmPanel">
             <div class="form-group">
-
                 <div class="row">
                     <div class="col-md-12">
                         <input class="form-control input-lg" type="text" id="txt_result2" placeholder="0" style="width:100%" readonly="readonly">
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-xs-3 col-sm-3">
                         <button type="button" class="btn btn-danger btn-lg" id="btn_c" style="width:100%" onclick="CalcKey('C');">C</button>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-xs-3 col-sm-3">
                         <button type="button" class="btn btn-default btn-lg" id="btn_1" style="width:100%" onclick="CalcKey('1');">1</button>
@@ -71,7 +72,6 @@
                         <button type="button" class="btn btn-default btn-lg" id="btn_plus" style="width:100%" onclick="CalcKey('+');">+</button>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-xs-3 col-sm-3">
                         <button type="button" class="btn btn-default btn-lg" id="btn_4" style="width:100%" onclick="CalcKey('4');">4</button>
@@ -86,7 +86,6 @@
                         <button type="button" class="btn btn-default btn-lg" id="btn_minus" style="width:100%" onclick="CalcKey('-');">-</button>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-xs-3 col-sm-3">
                         <button type="button" class="btn btn-default btn-lg" id="btn_7" style="width:100%" onclick="CalcKey('7');">7</button>
@@ -101,7 +100,6 @@
                         <button type="button" class="btn btn-default btn-lg" id="btn_mult" style="width:100%" onclick="CalcKey('*');">*</button>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-xs-3 col-sm-3">
                         <button type="button" class="btn btn-default btn-lg" id="btn_dot" style="width:100%" onclick="CalcKey('.');">.</button>
@@ -116,7 +114,6 @@
                         <button type="button" class="btn btn-default btn-lg" id="btn_div" style="width:100%" onclick="CalcKey('/');">/</button>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-xs-3 col-sm-3">
                         <button type="button" class="btn btn-default btn-lg" id="btn_1X" style="width:100%" onclick="CalcKey('1/x');">1/x</button>
@@ -131,7 +128,6 @@
                         <button type="button" class="btn btn-default btn-lg" id="btn_p" style="width:100%" onclick="CalcKey('Pi');">Pi</button>
                     </div>
                 </div>
-
                 <div class="row" style="display: none;">
                     <div class="col-xs-4 col-sm-4">
                         <button type="button" class="btn btn-default btn-lg" id="btn_sin" style="width:100%" onclick="CalcKey('sin');">sin</button>
@@ -143,7 +139,6 @@
                         <button type="button" class="btn btn-default btn-lg" id="btn_tan" style="width:100%" onclick="CalcKey('tan');">tan</button>
                     </div>
                 </div>
-
                 <div class="row" style="display: none;">
                     <div class="col-xs-4 col-sm-4">
                         <button type="button" class="btn btn-default btn-lg" id="btn_dec2bin" style="width:100%" onclick="CalcKey('dec2bin');">10=>2</button>
@@ -155,7 +150,6 @@
                         <button type="button" class="btn btn-default btn-lg" id="btn_bin2hex" style="width:100%" onclick="CalcKey('bin2hex');">2=>16</button>
                     </div>
                 </div>
-
                 <div class="row" style="display: none;">
                     <div class="col-xs-4 col-sm-4">
                         <button type="button" class="btn btn-default btn-lg" id="btn_bin2dec" style="width:100%" onclick="CalcKey('bin2dec');">2=>10</button>
@@ -167,17 +161,13 @@
                         <button type="button" class="btn btn-default btn-lg" id="btn_hex2bin" style="width:100%" onclick="CalcKey('hex2bin');">16=>2</button>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <button type="button" class="btn btn-success btn-lg btn-block" id="btn_rez" style="width:100%" onclick="CalcKey('=');">=</button>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </form>
-
 </body>
 </html>
